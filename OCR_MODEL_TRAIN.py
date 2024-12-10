@@ -1,7 +1,7 @@
 # Import necessary libraries
 from emnist import extract_training_samples, extract_test_samples
 import tensorflow as tf
-from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.utils import to_categorical # type: ignore
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix

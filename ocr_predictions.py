@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from tensorflow.keras.models import load_model
-from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.models import load_model # type: ignore
+from tensorflow.keras.utils import to_categorical # type: ignore
 from emnist import extract_test_samples
 
 # Load the pre-trained model
