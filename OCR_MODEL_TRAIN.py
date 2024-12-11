@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 
-# Step 1: Load and preprocess the EMNIST dataset
+# Load and preprocess the EMNIST dataset
 # Load the "ByClass" split (includes digits and letters)
 train_images, train_labels = extract_training_samples('byclass')
 test_images, test_labels = extract_test_samples('byclass')
@@ -25,7 +25,7 @@ test_labels = to_categorical(test_labels, num_classes)
 train_images = train_images.reshape(-1, 28, 28, 1)
 test_images = test_images.reshape(-1, 28, 28, 1)
 
-# Step 2: Define the CNN model
+# Define the CNN model
 model = tf.keras.Sequential([
     tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
     tf.keras.layers.MaxPooling2D((2, 2)),
@@ -41,17 +41,17 @@ model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-# Step 3: Train the model
+# Train the model
 history = model.fit(train_images, train_labels, 
                     epochs=10, 
                     batch_size=128, 
                     validation_data=(test_images, test_labels))
 
-# Step 4: Evaluate the model
+# Evaluate the model
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 print(f"Test accuracy: {test_acc * 100:.2f}%")
 
-# Step 5: Visualize accuracy improvements
+# Visualize accuracy improvements
 plt.figure(figsize=(10, 6))
 plt.plot(history.history['accuracy'], label='Training Accuracy')
 plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
@@ -62,7 +62,7 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# Step 6: Visualize predictions on test data
+# Visualize predictions on test data
 predictions = model.predict(test_images)
 predicted_classes = np.argmax(predictions, axis=1)
 true_classes = np.argmax(test_labels, axis=1)
@@ -94,6 +94,6 @@ for i in range(num_samples):
 plt.tight_layout()
 plt.show()
 
-# Step 9: Save the model
+# Save the model
 model.save('ocr_model.keras')
 print("Model saved as 'ocr_model.keras'")
